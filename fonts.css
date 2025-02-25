@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "caveat";
+    src: url(fonts/Caveat-Regular.ttf) format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "caveat";
+    src: url(fonts/Caveat-Medium.ttf) format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "caveat";
+    src: url(fonts/Caveat-SemiBold.ttf) format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "caveat";
+    src: url(fonts/Caveat-Bold.ttf) format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "8-bitOperator";
+    src: url(fonts/8bitOperatorPlus8-Regular.ttf) format(truetype);
+    font-weight: 100;
+}

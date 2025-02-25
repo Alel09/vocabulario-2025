@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f0e9d7;
+}
+
+nav {
+    background-color: #975473;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav label {
+    margin-right: 10px;
+    font-size: 1.11em;
+    color: #fff;
+}
+
+nav select {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    font-family: inherit;
+    font-size: 1.1em;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+nav select:hover {
+    background-color: #ddd;
+}
+
+h1 {
+    margin: 20px 0;
+    font-size: 2.5em;
+    font-family: inherit;
+}
+
+#juego, #resultado, #retroalimentacion {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4d7c9;
+    border: 1px solid #c66f82;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    padding: 10px;
+    font-size: 19px;
+    font-family: inherit;
+    margin: 10px 0;
+    width: calc(100% - 22px); /* Ajuste para el padding y borde */
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 19px;
+    font-family: inherit;
+    cursor: pointer;
+    margin: 10px 0;
+    width: calc(100% - 42px); /* Ajuste para el padding y borde */
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid #453433;
+    background-color: #e7a899;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+#reiniciar {
+    display: block;
+    margin: 20px auto;
+}
+
+.retroalimentacion-item {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.correcto {
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(0, 128, 0, 0.774);
+}
+
+.incorrecto {
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(255, 0, 0, 0.774);
+}
+
+@media (min-width: 600px) {
+    input, button {
+        width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    input, button {
+        width: calc(100% - 22px); /* Ajuste para el padding y borde */
+    }
+}

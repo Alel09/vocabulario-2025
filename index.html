@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Vocabulario</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+</head>
+<body>
+    <nav>
+        <label for="selectFuente">Selecciona la fuente:</label>
+        <select id="selectFuente">
+            <option value="arial">Arial</option>
+            <option value="caveat">caveat</option>
+            <option value="8-bitOperator">8-bitOperator</option>
+        </select>
+    </nav>
+    <h1>Examen de Vocabulario "Inglés-Español"</h1>
+    <div id="juego">
+        <div id="pregunta"></div>
+        <input type="text" id="respuesta" placeholder="Escribe tu respuesta aquí" autocomplete="off">
+        <button id="enviar">Enviar</button>
+        <div id="feedback" style="margin: 10px 0;"></div>
+        <button id="continuar" style="display: none;">Continuar</button>
+    </div>
+    <div id="resultado"></div>
+    <div id="retroalimentacion"></div>
+    <button id="reiniciar" style="display: none;">Reiniciar</button>
+    <button id="cambiarModo">Cambiar a Español-Inglés</button>
+    <script src="script.js"></script>
+</body>
+</html>
