@@ -32,36 +32,36 @@ const preguntasESaEN = {
 };
 
 const preguntasENaES = {
-    "both":"ambos",
-    "brief":"breve",
-    "a few":"pocos",
-    "a little":"poco",
-    "among":"entre varios",
-    "between":"entre dos",
-    "chew":"mascar",
-    "chewing gum":"goma de mascar",
-    "twice":"dos veces",
-    "once":"una vez",
-    "purpose":"proposito",
-    "actually":"de hecho",
-    "sudden":"repentino",
-    "be able to":"ser capaz de algo",
-    "several":"varios",
-    "in order to":"para",
-    "deny":"negar",
-    "reliable":"confiable",
-    "allow":"permitir",
-    "catch":"atrapar",
-    "say":"decir",
-    "bring":"traer",
-    "agree":"acordar",
-    "agreement":"acuerdo",
-    "sign":"firmar",
-    "increase":"incrementar",
-    "crew":"tripulación",
-    "childhood":"infancia",
-    "share":"compartir",
-    "link":"enlazar",
+    "both": "ambos",
+    "brief": "breve",
+    "a few": "pocos",
+    "a little": "poco",
+    "among": "entre varios",
+    "between": "entre dos",
+    "chew": "mascar",
+    "chewing gum": "goma de mascar",
+    "twice": "dos veces",
+    "once": "una vez",
+    "purpose": "proposito",
+    "actually": "de hecho",
+    "sudden": "repentino",
+    "be able to": "ser capaz de algo",
+    "several": "varios",
+    "in order to": "para",
+    "deny": "negar",
+    "reliable": "confiable",
+    "allow": "permitir",
+    "catch": "atrapar",
+    "say": "decir",
+    "bring": "traer",
+    "agree": "acordar",
+    "agreement": "acuerdo",
+    "sign": "firmar",
+    "increase": "incrementar",
+    "crew": "tripulación",
+    "childhood": "infancia",
+    "share": "compartir",
+    "link": "enlazar"
 };
 
 let preguntas, modo = "ENaES";
@@ -90,7 +90,6 @@ document.getElementById("selectFuente").addEventListener("change", (event) => {
             break;
     }
 });
-
 
 iniciarJuego();
 
@@ -121,8 +120,8 @@ function mostrarPregunta() {
 
 function enviarRespuesta() {
     const [pregunta, respuesta] = preguntasRandom[number - 1];
-    const respuestaUsuario = document.getElementById("respuesta").value;
-    if (respuestaUsuario.toLowerCase() === respuesta.toLowerCase()) {
+    const respuestaUsuario = document.getElementById("respuesta").value.toLowerCase(); // Convertir a minúsculas
+    if (respuestaUsuario === respuesta.toLowerCase()) { // Convertir a minúsculas
         document.getElementById("feedback").innerText = "¡Correcto!";
         puntaje++;
         respuestasCorrectas.push({ pregunta, respuesta, correcto: true });
