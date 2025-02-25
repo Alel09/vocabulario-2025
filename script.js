@@ -109,7 +109,7 @@ function mostrarPregunta() {
         const [pregunta, respuesta] = preguntasRandom[number - 1];
         document.getElementById("pregunta").innerText = `${number}.- ${pregunta}`;
         document.getElementById("respuesta").value = "";
-        document.getElementById("respuesta").setAttribute("autocomplete", "off");
+        document.getElementById("respuesta").setAttribute("autocomplete", "on");
         document.getElementById("enviar").style.display = "block";
         document.getElementById("continuar").style.display = "none";
         document.getElementById("feedback").innerText = "";
