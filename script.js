@@ -51,9 +51,9 @@ const preguntasENaES = {
     "deny": "negar",
     "reliable": "confiable",
     "allow": "permitir",
-    "catch": "atrapar",
+    "catch, caught, caught": "atrapar",
     "say": "decir",
-    "bring": "traer",
+    "bring, brought, brought": "traer",
     "agree": "acordar",
     "agreement": "acuerdo",
     "sign": "firmar",
@@ -72,6 +72,7 @@ document.getElementById("cambiarModo").addEventListener("click", cambiarModo);
 document.getElementById("enviar").addEventListener("click", enviarRespuesta);
 document.getElementById("reiniciar").addEventListener("click", reiniciarJuego);
 document.getElementById("continuar").addEventListener("click", continuarJuego);
+document.getElementById("verPalabras").addEventListener("click", verPalabras);
 
 document.getElementById("selectFuente").addEventListener("change", (event) => {
     const fuenteSeleccionada = event.target.value;
@@ -152,6 +153,17 @@ function mostrarRetroalimentacion() {
         const colorClase = correcto ? 'correcto' : 'incorrecto';
         retroalimentacionDiv.innerHTML += `
             <div class="retroalimentacion-item ${colorClase}">
+                ${pregunta} - ${respuesta}
+            </div>`;
+    });
+}
+
+function verPalabras() {
+    const retroalimentacionDiv = document.getElementById("retroalimentacion");
+    retroalimentacionDiv.innerHTML = "<h2>Palabras de Repaso:</h2>";
+    Object.entries(preguntas).forEach(([pregunta, respuesta]) => {
+        retroalimentacionDiv.innerHTML += `
+            <div class="retroalimentacion-item">
                 ${pregunta} - ${respuesta}
             </div>`;
     });
