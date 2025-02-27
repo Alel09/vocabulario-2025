@@ -87,8 +87,10 @@ button:hover {
 .retroalimentacion-item {
     padding: 10px;
     margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 2px solid white;
     color: #fff;
+    background-color:#e7a899;
 }
 
 .correcto {
