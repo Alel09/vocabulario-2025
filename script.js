@@ -120,7 +120,7 @@ function mostrarPregunta() {
 
 function enviarRespuesta() {
     const [pregunta, respuesta] = preguntasRandom[number - 1];
-    const respuestaUsuario = document.getElementById("respuesta").value.toLowerCase(); // Convertir a minúsculas
+    const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase(); // Eliminar espacios y convertir a minúsculas
     if (respuestaUsuario === respuesta.toLowerCase()) { // Convertir a minúsculas
         document.getElementById("feedback").innerText = "¡Correcto!";
         puntaje++;
