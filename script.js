@@ -72,7 +72,7 @@ document.getElementById("cambiarModo").addEventListener("click", cambiarModo);
 document.getElementById("enviar").addEventListener("click", enviarRespuesta);
 document.getElementById("reiniciar").addEventListener("click", reiniciarJuego);
 document.getElementById("continuar").addEventListener("click", continuarJuego);
-document.getElementById("verPalabras").addEventListener("click", verPalabras);
+document.getElementById("verPalabras").addEventListener("click", togglePalabras);
 
 document.getElementById("selectFuente").addEventListener("change", (event) => {
     const fuenteSeleccionada = event.target.value;
@@ -81,13 +81,13 @@ document.getElementById("selectFuente").addEventListener("change", (event) => {
             document.body.style.fontFamily = "Arial, sans-serif";
             break;
         case "caveat":
-            document.body.style.fontFamily = "'caveat', Arial, sans-serif";
+            document.body.style.fontFamily = "'Caveat', Arial, sans-serif";
             break;
         case "8-bitOperator":
             document.body.style.fontFamily = "'8-bitOperator', Times, serif";
             break;
         default:
-            document.body.style.fontFamily = "Arial, sans-serif"; // Fallback por defecto
+            document.body.style.fontFamily = "Arial, sans-serif";
             break;
     }
 });
@@ -102,6 +102,7 @@ function iniciarJuego() {
     totalPreguntas = preguntasRandom.length;
     number = 1;
     respuestasCorrectas = [];
+    document.getElementById("cambiarModo").innerText = modo === "ENaES" ? "Cambiar a Español → Inglés" : "Cambiar a Inglés → Español";
     mostrarPregunta();
 }
 
@@ -121,8 +122,8 @@ function mostrarPregunta() {
 
 function enviarRespuesta() {
     const [pregunta, respuesta] = preguntasRandom[number - 1];
-    const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase(); // Eliminar espacios y convertir a minúsculas
-    if (respuestaUsuario === respuesta.toLowerCase()) { // Convertir a minúsculas
+    const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
+    if (respuestaUsuario === respuesta.toLowerCase()) {
         document.getElementById("feedback").innerText = "¡Correcto!";
         puntaje++;
         respuestasCorrectas.push({ pregunta, respuesta, correcto: true });
@@ -158,7 +159,7 @@ function mostrarRetroalimentacion() {
     });
 }
 
-function verPalabras() {
+function mostrarTodasLasPalabras() {
     const retroalimentacionDiv = document.getElementById("retroalimentacion");
     retroalimentacionDiv.innerHTML = "<h2>Palabras de Repaso:</h2>";
     Object.entries(preguntas).forEach(([pregunta, respuesta]) => {
@@ -167,6 +168,24 @@ function verPalabras() {
                 ${pregunta} - ${respuesta}
             </div>`;
     });
+}
+
+function togglePalabras() {
+    const juegoDiv = document.getElementById("juego");
+    const reiniciarBtn = document.getElementById("reiniciar");
+    const verPalabrasBtn = document.getElementById("verPalabras");
+
+    if (verPalabrasBtn.textContent === "Ver palabras de repaso") {
+        mostrarTodasLasPalabras();
+        juegoDiv.style.display = "none";
+        reiniciarBtn.style.display = "none";
+        verPalabrasBtn.textContent = "Regresar al juego";
+    } else {
+        juegoDiv.style.display = "block";
+        reiniciarBtn.style.display = "block";
+        document.getElementById("retroalimentacion").innerHTML = "";
+        verPalabrasBtn.textContent = "Ver palabras de repaso";
+    }
 }
 
 function reiniciarJuego() {
@@ -178,7 +197,19 @@ function reiniciarJuego() {
 }
 
 function cambiarModo() {
+    const verPalabrasBtn = document.getElementById("verPalabras");
+    const estabaEnRepaso = verPalabrasBtn.textContent === "Regresar al juego";
+
+    // Cambiar el modo
     modo = modo === "ENaES" ? "ESaEN" : "ENaES";
-    document.getElementById("cambiarModo").innerText = modo === "ENaES" ? "Cambiar a Español-Inglés" : "Cambiar a Inglés-Español";
-    reiniciarJuego();
+    preguntas = modo === "ENaES" ? preguntasENaES : preguntasESaEN;
+    document.getElementById("cambiarModo").innerText = modo === "ENaES" ? "Cambiar a Español → Inglés" : "Cambiar a Inglés → Español";
+
+    if (estabaEnRepaso) {
+        // Si estaba en repaso, actualizar las palabras de repaso
+        mostrarTodasLasPalabras();
+    } else {
+        // Si estaba en el juego, reiniciar el juego
+        reiniciarJuego();
+    }
 }
