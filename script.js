@@ -28,7 +28,27 @@ const preguntasESaEN = {
     "tripulación": "crew",
     "infancia": "childhood",
     "compartir": "share",
-    "enlazar": "link"
+    "enlazar": "link",
+    "sin embargo":"however",
+    "helicoptero":"chopper",
+    "ademas":"in addition",
+    "suave":"soft",
+    "confiado":"confident",
+    "concurrido":"crowded",
+    "aumentar":"raise",
+    "cuota":"fee",
+    "curriculum":"resume",
+    "deber (deuda)":"owe",
+    "beca":"scholarship",
+    "carrera universitaria":"major",
+    "carrera laboral":"carrer",
+    "universidad":"college",
+    "licenciatura":"bachelor's degree",
+    "deuda":"debt",
+    "disculparse":"apologize",
+    "disculpa":"apology",
+    "testigo":"witness",
+    "huesped":"guest"
 };
 
 const preguntasENaES = {
@@ -61,7 +81,27 @@ const preguntasENaES = {
     "crew": "tripulación",
     "childhood": "infancia",
     "share": "compartir",
-    "link": "enlazar"
+    "link": "enlazar",
+    "however": "sin embargo",
+    "chopper": "helicoptero",
+    "in addition": "ademas",
+    "soft": "suave",
+    "confident": "confiado",
+    "crowded": "concurrido",
+    "raise": "aumentar",
+    "fee": "cuota",
+    "resume": "curriculum",
+    "owe": "deber (deuda)",
+    "scholarship": "beca",
+    "major": "carrera universitaria",
+    "career": "carrera laboral",
+    "college": "universidad",
+    "bachelor's degree": "licenciatura",
+    "debt": "deuda",
+    "apologize": "disculparse",
+    "apology": "disculpa",
+    "witness": "testigo",
+    "guest": "huesped"
 };
 
 let preguntas, modo = "ENaES";
