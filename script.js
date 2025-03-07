@@ -18,9 +18,9 @@ const preguntasESaEN = {
     "negar": "deny",
     "confiable": "reliable",
     "permitir": "allow",
-    "atrapar": "catch",
+    "atrapar": ["catch", "caught", "caught"],
     "decir": "say",
-    "traer": "bring",
+    "traer": ["bring", "brought", "brought"],
     "acordar": "agree",
     "acuerdo": "agreement",
     "firmar": "sign",
@@ -91,7 +91,7 @@ const preguntasENaES = {
     "raise": "aumentar",
     "fee": "cuota",
     "resume": "curriculum",
-    "owe": "deber (deuda)",
+    "owe": "deber",
     "scholarship": "beca",
     "major": "carrera universitaria",
     "career": "carrera laboral",
@@ -150,8 +150,29 @@ function mostrarPregunta() {
     if (number <= totalPreguntas) {
         const [pregunta, respuesta] = preguntasRandom[number - 1];
         document.getElementById("pregunta").innerText = `${number}.- ${pregunta}`;
-        document.getElementById("respuesta").value = "";
-        document.getElementById("respuesta").setAttribute("autocomplete", "off");
+        document.getElementById("contador").innerText = `Pregunta ${number} de ${totalPreguntas}`; // Actualizar contador
+        
+        const respuestasContainer = document.getElementById("respuestasContainer");
+        respuestasContainer.innerHTML = ""; // Limpiar contenedor
+        
+        if (modo === "ESaEN" && Array.isArray(respuesta)) {
+            respuesta.forEach((_, index) => {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.id = `respuesta-${index}`;
+                input.placeholder = `Traducción ${index + 1}`;
+                input.autocomplete = "off";
+                respuestasContainer.appendChild(input);
+            });
+        } else {
+            const input = document.createElement("input");
+            input.type = "text";
+            input.id = "respuesta";
+            input.placeholder = "Escribe tu respuesta aquí";
+            input.autocomplete = "off";
+            respuestasContainer.appendChild(input);
+        }
+
         document.getElementById("enviar").style.display = "block";
         document.getElementById("continuar").style.display = "none";
         document.getElementById("feedback").innerText = "";
@@ -162,15 +183,46 @@ function mostrarPregunta() {
 
 function enviarRespuesta() {
     const [pregunta, respuesta] = preguntasRandom[number - 1];
-    const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
-    if (respuestaUsuario === respuesta.toLowerCase()) {
-        document.getElementById("feedback").innerText = "¡Correcto!";
-        puntaje++;
-        respuestasCorrectas.push({ pregunta, respuesta, correcto: true });
+    const respuestasContainer = document.getElementById("respuestasContainer");
+    let respuestasUsuario = [];
+    
+    if (modo === "ESaEN" && Array.isArray(respuesta)) {
+        // Recolectar todas las respuestas del usuario
+        respuesta.forEach((_, index) => {
+            const input = document.getElementById(`respuesta-${index}`);
+            respuestasUsuario.push(input.value.trim().toLowerCase());
+        });
+        
+        // Verificar que TODAS las respuestas del usuario coincidan con las correctas
+        const todasCorrectas = respuestasUsuario.length === respuesta.length && 
+            respuestasUsuario.every((userRespuesta, index) => 
+                respuesta.some(r => r.toLowerCase() === userRespuesta) && 
+                !respuestasUsuario.slice(0, index).includes(userRespuesta) // Evitar repeticiones
+            );
+        
+        if (todasCorrectas) {
+            document.getElementById("feedback").innerText = "¡Correcto!";
+            puntaje++;
+            respuestasCorrectas.push({ pregunta, respuesta: respuesta.join(", "), correcto: true });
+        } else {
+            document.getElementById("feedback").innerText = `Incorrecto. Las respuestas correctas son: ${respuesta.join(", ")}`;
+            respuestasCorrectas.push({ pregunta, respuesta: respuesta.join(", "), correcto: false });
+        }
     } else {
-        document.getElementById("feedback").innerText = `Incorrecto. La respuesta correcta es: ${respuesta}`;
-        respuestasCorrectas.push({ pregunta, respuesta, correcto: false });
+        // Caso normal: una sola respuesta
+        const respuestaUsuario = document.getElementById("respuesta").value.trim().toLowerCase();
+        const respuestaCorrecta = Array.isArray(respuesta) ? respuesta[0] : respuesta;
+        
+        if (respuestaUsuario === respuestaCorrecta.toLowerCase()) {
+            document.getElementById("feedback").innerText = "¡Correcto!";
+            puntaje++;
+            respuestasCorrectas.push({ pregunta, respuesta: respuestaCorrecta, correcto: true });
+        } else {
+            document.getElementById("feedback").innerText = `Incorrecto. La respuesta correcta es: ${respuestaCorrecta}`;
+            respuestasCorrectas.push({ pregunta, respuesta: respuestaCorrecta, correcto: false });
+        }
     }
+    
     document.getElementById("enviar").style.display = "none";
     document.getElementById("continuar").style.display = "block";
 }
@@ -218,11 +270,12 @@ function togglePalabras() {
     if (verPalabrasBtn.textContent === "Ver palabras de repaso") {
         mostrarTodasLasPalabras();
         juegoDiv.style.display = "none";
-        reiniciarBtn.style.display = "none";
+        reiniciarBtn.style.display = "none"; // Ocultar "Reiniciar" al entrar en repaso
         verPalabrasBtn.textContent = "Regresar al juego";
     } else {
         juegoDiv.style.display = "block";
-        reiniciarBtn.style.display = "block";
+        // Mostrar "Reiniciar" solo si el juego ha terminado
+        reiniciarBtn.style.display = (number > totalPreguntas) ? "block" : "none";
         document.getElementById("retroalimentacion").innerHTML = "";
         verPalabrasBtn.textContent = "Ver palabras de repaso";
     }

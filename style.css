@@ -61,6 +61,13 @@ input {
     box-sizing: border-box;
 }
 
+#contador {
+    font-size: 0.9em; /* Tamaño pequeño */
+    color: #453433; /* Color discreto que combine con el diseño */
+    margin-bottom: 10px; /* Espacio debajo del contador */
+    float: right;
+}
+
 button {
     padding: 10px 20px;
     font-size: 19px;
@@ -90,7 +97,7 @@ button:hover {
     border-radius: 10px;
     border: 2px solid #453433;
     color: #000;
-    background-color:#e7a899;
+    background-color: #e7a899;
 }
 
 .correcto {
@@ -105,9 +112,28 @@ button:hover {
     background-color: rgba(255, 0, 0, 0.774);
 }
 
+#respuestasContainer {
+    display: flex; /* Corregido de "center" a "flex" */
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+}
+
+#respuestasContainer input {
+    padding: 10px; /* Aumentado para mejor usabilidad en móvil */
+    font-size: 16px;
+    width: calc(100% - 22px); /* Ajuste para padding y borde */
+    box-sizing: border-box;
+}
+
+/* Media Queries para responsividad */
 @media (min-width: 600px) {
     input, button {
         width: 300px;
+    }
+    #respuestasContainer input {
+        width: 300px; /* Tamaño fijo en pantallas grandes */
     }
 }
 
@@ -115,8 +141,11 @@ button:hover {
     h1 {
         font-size: 1.5em;
     }
-
     input, button {
-        width: calc(100% - 22px); /* Ajuste para el padding y borde */
+        width: calc(100% - 22px); /* Ajuste para pantallas pequeñas */
+    }
+    #respuestasContainer input {
+        width: calc(100% - 22px); /* Asegura que los inputs sean responsivos */
+        font-size: 14px; /* Reduce el tamaño de fuente en móviles si es necesario */
     }
 }
