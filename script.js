@@ -83,7 +83,7 @@ const preguntasENaES = {
     "share": "compartir",
     "link": "enlazar",
     "however": "sin embargo",
-    "chopper": "helicoptero",
+    "chopper": "helicóptero",
     "in addition": "ademas",
     "soft": "suave",
     "confident": "confiado",
@@ -101,7 +101,7 @@ const preguntasENaES = {
     "apologize": "disculparse",
     "apology": "disculpa",
     "witness": "testigo",
-    "guest": "huesped"
+    "guest": "huésped"
 };
 
 let preguntas, modo = "ENaES";
@@ -195,10 +195,10 @@ function enviarRespuesta() {
         
         // Verificar que TODAS las respuestas del usuario coincidan con las correctas
         const todasCorrectas = respuestasUsuario.length === respuesta.length && 
-            respuestasUsuario.every((userRespuesta, index) => 
-                respuesta.some(r => r.toLowerCase() === userRespuesta) && 
-                !respuestasUsuario.slice(0, index).includes(userRespuesta) // Evitar repeticiones
+        respuestasUsuario.every((userRespuesta, index) => 
+        respuesta[index].toLowerCase() === userRespuesta
             );
+
         
         if (todasCorrectas) {
             document.getElementById("feedback").innerText = "¡Correcto!";
