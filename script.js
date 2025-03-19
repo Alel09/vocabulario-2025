@@ -48,7 +48,17 @@ const preguntasESaEN = {
     "disculparse":"apologize",
     "disculpa":"apology",
     "testigo":"witness",
-    "huesped":"guest"
+    "huesped":"guest",
+    "mirar fijamente": "stare",
+    "pesadilla": "nightmare",
+    "desnudo": "naked",
+    "deshacerse": "get rid of",
+    "conocimiento": "knowledge",
+    "vomitar": ["throw up","threw up","thrown up"],
+    "receta medica": "prescription",
+    "escalera portatil": "ladder",
+    "escalera fija": "stair",
+    "culpar": "blame",
 };
 
 const preguntasENaES = {
@@ -101,7 +111,19 @@ const preguntasENaES = {
     "apologize": "disculparse",
     "apology": "disculpa",
     "witness": "testigo",
-    "guest": "huésped"
+    "guest": "huésped",
+    "stare": "mirar fijamente",
+    "nightmare": "pesadilla",
+    "naked": "desnudo",
+    "get rid of": "deshacerse",
+    "knowledge": "conocimiento",
+    "throw up": "vomitar",
+    "threw up": "vomitar",
+    "thrown up": "vomitar",
+    "prescription": "receta medica",
+    "ladder": "escalera portatil",
+    "stair": "escalera fija",
+    "blame": "culpar"    
 };
 
 let preguntas, modo = "ENaES";
